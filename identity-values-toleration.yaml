@@ -1,0 +1,42 @@
+# Datadog Agent with APM, Processes, and System Probe enabled
+
+targetSystem: "linux"
+datadog:
+  prometheusScrape:
+    enabled: false
+    serviceEndpoints: false
+  # apiKey: <DATADOG_API_KEY>
+  # appKey: <DATADOG_APP_KEY>
+  # If not using secrets, then use apiKey and appKey instead
+  apiKeyExistingSecret: datadog-secret
+  appKeyExistingSecret: datadog-secret
+  clusterName: kc-d-identity-2
+  site: 'us5.datadoghq.com'
+  logLevel: INFO
+  tags: []
+  # datadog.kubelet.tlsVerify should be `false` on kind and minikube
+  # to establish communication with the kubelet
+  kubelet:
+    tlsVerify: "false"
+  logs:
+    enabled: false
+    containerCollectAll: false
+    containerCollectUsingFiles: false
+    autoMultiLineDetection: false
+
+  apm:
+    portEnabled: true
+
+agents:
+# Add the tolerations 
+  tolerations:
+    - key: "service"  # The taint key you want to override
+      operator: "Equal"  # Operator to match the taint key and value
+      value: "openam"  # The taint value you want to override
+      effect: "NoSchedule"  # The effect of the taint you want to tolerate
+
+clusterAgent:
+  enabled: true
+  replicas: 2
+  createPodDisruptionBudget: true
+
