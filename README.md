@@ -1,7 +1,8 @@
-# README.md
-## Identity
+# Datadog Installation on K8s cluster with tainted nodes
 
 Steps that were run to put Datadog on all nodes
+
+## Steps
 
 Run a script to show the nodes in the given namespace that don't have datadog agent
 
