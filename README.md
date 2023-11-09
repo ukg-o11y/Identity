@@ -7,7 +7,7 @@ Steps that were run to put Datadog on all nodes
 Run a script to show the nodes in the given namespace that don't have datadog agent
 
 ```
-bash-3.2$ ./getnodeswithoutdd.sh iam-authn-psr-as-int-1
+bash-3.2$ ./nodes-without-datadog.sh iam-authn-psr-as-int-1
 > "kc-d-identity-2-openam-2-zone-01-worker10"
 > "kc-d-identity-2-openam-2-zone-01-worker13"
 > "kc-d-identity-2-openam-2-zone-01-worker4"
@@ -29,6 +29,6 @@ helm install --namespace datadog -f ./identity-values-toleration.yaml datadog da
 
 Verify all nodes now have datadog agent
 ```
-bash-3.2$  ./getnodeswithoutdd.sh iam-authn-psr-as-int-1   
+bash-3.2$  ./nodes-without-datadog.sh iam-authn-psr-as-int-1   
 <no output>
 ```
